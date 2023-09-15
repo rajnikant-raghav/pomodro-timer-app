@@ -22,8 +22,6 @@ const LoginWithGoogle = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       const email = user.email;
-      console.log(email);
-      // Do something with the user's email
     } catch (error) {
       console.error(error);
       alert(error);
@@ -36,7 +34,7 @@ const LoginWithGoogle = () => {
         // https://firebase.google.com/docs/reference/js/auth.user
         navigate("/");
       } else {
-        console.log(user);
+        
         navigate("/timer");
       }
     });

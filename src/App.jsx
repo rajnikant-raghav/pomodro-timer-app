@@ -5,7 +5,7 @@ import Timer from "./conponents/Timer";
 
 const App = () => {
   return (
-    <div>
+    <div >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginWithGoogle />} />

@@ -4,6 +4,7 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { Button, ButtonGroup, Box, Text } from "@chakra-ui/react";
 
 const Timer = () => {
+  const [data, setData] = useState()
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(true);
@@ -29,8 +30,8 @@ const Timer = () => {
         // https://firebase.google.com/docs/reference/js/auth.user
         navigate("/");
       } else {
-        console.log(user);
         navigate("/timer");
+        setData(user.displayName)
       }
     });
   }, []);
@@ -78,7 +79,12 @@ const Timer = () => {
   };
 
   return (
-    <Box  height={'100vh'} display={'flex'} justifyContent={'center'} alignItems={'Center'}>
+    <Box
+      height={"100vh"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"Center"}
+    >
       <Box
         w={"300px"}
         margin={"auto"}
@@ -87,7 +93,7 @@ const Timer = () => {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Text fontSize={"50px"} fontWeight={'bold'}>
+        <Text fontSize={"50px"} fontWeight={"bold"}>
           {minutes} : {seconds}
         </Text>
         <ButtonGroup gap="6">
@@ -98,7 +104,7 @@ const Timer = () => {
             onClick={toggleTimer}
             padding={"10px 15px 10px 15px"}
             borderRadius={"4px"}
-            cursor={'pointer'}
+            cursor={"pointer"}
           >
             {isActive ? "Pause" : "Start"}
           </Button>
@@ -109,7 +115,7 @@ const Timer = () => {
             onClick={resetTimer}
             padding={"10px 15px 10px 15px"}
             borderRadius={"4px"}
-            cursor={'pointer'}
+            cursor={"pointer"}
           >
             Reset
           </Button>
@@ -121,14 +127,17 @@ const Timer = () => {
         position={"absolute"}
         right={"30px"}
         top={"50px"}
-        border={'none'}
-        borderRadius={'5px'}
-        padding={'10px 15px 10px 15px'}
+        border={"none"}
+        borderRadius={"5px"}
+        padding={"10px 15px 10px 15px"}
         onClick={logout}
-        cursor={'pointer'}
+        cursor={"pointer"}
       >
         Logout
       </Button>
+      <Text position={"absolute"} top={"0"} width={"100vw"} textAlign={'center'} padding={'5px'}>
+        Hello, {data}
+      </Text>
     </Box>
   );
 };
